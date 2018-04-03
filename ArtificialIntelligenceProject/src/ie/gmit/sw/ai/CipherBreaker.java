@@ -10,11 +10,16 @@ public class CipherBreaker {
 		GramParser gp = new GramParser();
 		PlayfairCipher pc = new PlayfairCipher();
 		Scanner sc = new Scanner(System.in);
+		Key k = new Key();
 		
 		System.out.println("Loading 4Gram.txt...");
-		gp.parse4Gram();
+		//gp.parse4Gram();
 		System.out.println("Loading Complete!");
 		System.out.println("\n");
+		
+		char[] randomKey = k.generateKey();
+		System.out.println(randomKey);
+		
 		
         String key = prompt("Enter an encryption key (min length 6): ", sc, 6);
         String txt = prompt("Enter the message: ", sc, 1);

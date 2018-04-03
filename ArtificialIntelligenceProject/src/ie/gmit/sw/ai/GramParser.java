@@ -22,7 +22,6 @@ public class GramParser {
 			}
 			in.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e){
 			e.printStackTrace();
