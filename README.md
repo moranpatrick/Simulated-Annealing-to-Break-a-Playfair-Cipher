@@ -11,6 +11,7 @@ Fourth Year Artificial Intelligence Project
 * [Introduction](#intro)
 * [Playfair Cipher](#play)
 * [Simulated Annealing](#sa)
+* [n-Gram Statistics](#ngram)
 * [References](#references)
 
 # Introduction<a name = "intro"></a>
@@ -28,6 +29,9 @@ The Playfair Cipher is a manual symmetric encryption technique invented by Charl
 [Top](#contents) 
 
 # The Simulated Annealing Algorithm<a name="sa"></a>
+
+![Alt Text](https://upload.wikimedia.org/wikipedia/commons/d/d5/Hill_Climbing_with_Simulated_Annealing.gif)
+
 There are many optimization Algorithms but for this project will be using the Simulated Annealing Algorithm. This Algorithm is a method for finding a good solution to an optimization problem. 
 
 Simulated annealing is an excellent approach for breaking a cipher using a randomly
@@ -35,6 +39,21 @@ generated key. Simulated Annealing uses randomization to avoid heuristic plateau
 
 ### The Algorithm
 <img src="images/simulated.png">
+
+[Top](#contents) 
+
+# n-Gram Statistics<a name="ngram"></a>
+An n-gram is a substring of a word(s) of length n and can be used to
+measure how similar some decrypted text is to English.  For example, the quadgrams (4-grams) of the word "HAPPYDAYS" are "HAPP", "APPY", "PPYD", "PYDA", "YDAY" and "DAYS". 
+
+A heuristic score can be computed from the frequency of
+occurrence of a 4-gram, q, as follows:  
+
+P(q) = count(q) / n
+
+However in this project we will use log probability because we can run into problems when multiplying probabilities with very small floating point values. The String "HAPPYDAYS" can be computed using log probabilty as follows: 
+
+<img src="images/log_prob.png">
 
 [Top](#contents) 
 
