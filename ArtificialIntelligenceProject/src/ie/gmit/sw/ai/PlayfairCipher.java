@@ -6,7 +6,6 @@ import java.util.Scanner;
 /* Playfair Cipher Adapted from http://rosettacode.org/wiki/Playfair_cipher#Java */
 public class PlayfairCipher {
 	
-	//THEQUICKBROWNFXMPDVLAZYGS
 	
     private static char[][] charTable;
     private static Point[] positions;
@@ -17,11 +16,11 @@ public class PlayfairCipher {
         return changeJtoI ? s.replace("J", "I") : s.replace("Q", "");
     }
  
-    public static void createTable(String key, boolean changeJtoI) {
+    public static void createTable(String key) {
         charTable = new char[5][5];
         positions = new Point[26];
  
-        String s = prepareText(key + "ABCDEFGHIJKLMNOPQRSTUVWXYZ", changeJtoI);
+        String s = prepareText(key + "ABCDEFGHIJKLMNOPQRSTUVWXYZ", true);
  
         int len = s.length();
         for (int i = 0, k = 0; i < len; i++) {
