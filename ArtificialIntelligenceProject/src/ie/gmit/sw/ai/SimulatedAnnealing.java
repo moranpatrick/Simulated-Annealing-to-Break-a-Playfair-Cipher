@@ -27,6 +27,10 @@ public class SimulatedAnnealing {
 		pc.createTable(parent);
 		System.out.println(pc.decode(cipherTxt));
 		
+		// Step 3 Score The Fitness of the key
+		double score = gp.scoreText(cipherTxt);
+		System.out.println(score);
+		
 		for(int temp = temperature; temp > 0; temp--){
 			
 			for(int trans = transitions; trans > 0; trans--){

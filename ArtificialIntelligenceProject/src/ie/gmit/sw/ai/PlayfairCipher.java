@@ -56,7 +56,6 @@ public class PlayfairCipher {
         for (int i = 0; i < len; i += 2) {
             char a = text.charAt(i);
             char b = text.charAt(i + 1);
- 
             int row1 = positions[a - 'A'].y;
             int row2 = positions[b - 'A'].y;
             int col1 = positions[a - 'A'].x;

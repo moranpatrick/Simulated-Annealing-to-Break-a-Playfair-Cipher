@@ -14,16 +14,15 @@ public class File {
 	
 	 // https://stackoverflow.com/q/326390
 	public String readFile(String file) throws IOException{
+
 		br = new BufferedReader(new FileReader (file));
 		String line = null;
 		StringBuilder stringBuilder = new StringBuilder();
-		String ls = System.getProperty("line.separator");
 		
 		try {
 			
 		    while((line = br.readLine()) != null) {
 		        stringBuilder.append(line);
-		        stringBuilder.append(ls);
 		    }
 		
 		    return stringBuilder.toString();
