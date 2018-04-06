@@ -1,14 +1,13 @@
 package ie.gmit.sw.ai;
 
 import java.awt.Point;
-import java.util.Scanner;
 
 /* Playfair Cipher Adapted from http://rosettacode.org/wiki/Playfair_cipher#Java */
 public class PlayfairCipher {
 	
 	
-    private static char[][] charTable;
-    private static Point[] positions;
+    private char[][] charTable;
+    private Point[] positions;
  
  
     public static String prepareText(String s, boolean changeJtoI) {
@@ -16,7 +15,7 @@ public class PlayfairCipher {
         return changeJtoI ? s.replace("J", "I") : s.replace("Q", "");
     }
  
-    public static void createTable(String key) {
+    public void createTable(String key) {
         charTable = new char[5][5];
         positions = new Point[26];
  
@@ -33,7 +32,7 @@ public class PlayfairCipher {
         }
     }
  
-    public static String encode(String s) {
+    public String encode(String s) {
         StringBuilder sb = new StringBuilder(s);
  
         for (int i = 0; i < sb.length(); i += 2) {
@@ -47,11 +46,12 @@ public class PlayfairCipher {
         return codec(sb, 1);
     }
  
-    public static String decode(String s) {
+    public String decode(String s) {
+    	
         return codec(new StringBuilder(s), 4);
     }
  
-    public static String codec(StringBuilder text, int direction) {
+    public String codec(StringBuilder text, int direction) {
         int len = text.length();
         for (int i = 0; i < len; i += 2) {
             char a = text.charAt(i);

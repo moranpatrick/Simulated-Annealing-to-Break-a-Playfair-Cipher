@@ -9,30 +9,24 @@ public class CipherBreaker {
 		int choice;
 		String fileName = "";
 		String cipherText = "";
-		GramParser gp = new GramParser();
 		PlayfairCipher pc = new PlayfairCipher();
 		Scanner sc = new Scanner(System.in);
 		Key k = new Key();
 		SimulatedAnnealing sa = null;
 		
-		System.out.println(k.SwapLetters("THEQUICKBROWNFXMPDVLAZYGS", 4, 11));
-		//System.out.println("Cols Flipped: " + k.FlipCols("THEQUICKBROWNFXMPDVLAZYGS"));
-		//System.out.println(k.FlipRows("THEQUICKBROWNFXMPDVLAZYGS"));
-	
-		
+			
 		do{
 			choice = menu();
 			switch(choice){
 			case 1:
 				System.out.println("Please enter your filename: ");
-				fileName = sc.next();
-				
+				//fileName = sc.next();
+				fileName = "C:\\Users\\Patrick\\Desktop\\hobbit.txt";
 				cipherText = new File().readFile(fileName);
-				System.out.println(cipherText);
+				System.out.println("Cipher Text: " + cipherText.substring(0, 3600));
 						
-				sa = new SimulatedAnnealing();
-				//sa.StartSimulatedAnnealing("HEQEFIRCHITZMHUKOTXEDKWLHKHQVDSIEAKOZTXMTKOEEQSBXTDYHEUKUDBMKYZTFIRCEOMIYOZAEAMKIUZNQHTWDUOBVUDUPNOIEHEQKDLYWXNWILAZDYYOFTWAGADTVUDXXIEKITLKGKSIUYYOYETWDUOCHEFWHEKOABOKHUIMAREMWNFWFWIUNTTIOIOZAZTWFBRCHEXMTYDYHE");
-				sa.StartSimulatedAnnealing(cipherText);
+				//sa = new SimulatedAnnealing();
+				//sa.StartSimulatedAnnealing(cipherText);
 				break;
 			case 2:
 

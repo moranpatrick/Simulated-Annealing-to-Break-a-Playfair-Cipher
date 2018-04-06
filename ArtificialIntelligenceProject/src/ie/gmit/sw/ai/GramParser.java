@@ -11,55 +11,65 @@ public class GramParser {
 	
 	private Map<String, Double> map = new HashMap<String, Double>();
 	private BufferedReader in;
-	private int count = 0; 
+	private long count = 0; 
 	private String FILENAME = "4grams.txt";
 	
-	public GramParser(){
+
+	
+	public GramParser() throws IOException{
 		parse4Gram();
 	}
 	
-	public void parse4Gram(){
+	public void parse4Gram() throws IOException{
+		
 		
 		try {
 			in = new BufferedReader(new FileReader(FILENAME));
 			String line = "";
 			while ((line = in.readLine()) != null) {
 				map.put(line.split(" ")[0], Double.parseDouble(line.split(" ")[1]));	
-				count++; // count the total number of 4grams in file
 			}
-			//System.out.println(map.toString());
+			
+			System.out.println("NGrams Successfully Loaded");
 			in.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e){
 			e.printStackTrace();
-		}								
+		}	
+		
+		for(double val : map.values()){
+			count += val;
+		}
+		System.out.println("COUNT" + count);
 	}  
 	
 	public double scoreText(String text){
+		
 		double score = 0;
 		int n = 0;
-		String str = "";
 		
-		// If the length of the text input is less than 400 chars
-		if(text.length() < 400){
+		// If the length of the text input is less than 700 chars
+		if(text.length() < 700){
 			n = text.length() - 4;
 		}
 		else{
-			// Otherwise set n to be 396
-			n = 396;
+			// Otherwise set n to be 696
+			n = 700 - 4;
 		}
 		
-		for(int i = 0; i < n; i++){
-			str = text.substring(i, i + 4);
-			if(map.get(str) != null){
-				score +=  Math.log10((double) map.get(str) / count);
+		for(int i = 0; i < n; i++) {
+			//score += Math.log10((double)(((map.get(text.substring(i, i + 4)) != null) ? map.get(text.substring(i, i + 4)) : 1)) / this.count);
+			
+			if(map.get(text.substring(i, i + 4)) != null){
+				score += Math.log10((double)(map.get(text.substring(i, i + 4))) / count);
 			}
 			else{
-				score += 1 / count;
-			}	
+				score += Math.log10((double)(1) / count);
+			}
 		}
-		return score;		
+		return score;
+	
 	}
 	
 	

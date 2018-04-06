@@ -44,7 +44,7 @@ public class Key {
 	 */
 	public String shuffleKey(String key){
 		Random r = ThreadLocalRandom.current();
-		int randomNum = r.nextInt(100);
+		int randomNum = r.nextInt(100) + 1;
 		
 		switch (randomNum) {
 		case 1:

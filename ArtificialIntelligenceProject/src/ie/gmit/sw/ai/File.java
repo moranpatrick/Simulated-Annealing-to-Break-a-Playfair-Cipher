@@ -1,12 +1,11 @@
 package ie.gmit.sw.ai;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.Reader;
 
 public class File {
 
@@ -14,7 +13,7 @@ public class File {
 	
 	 // https://stackoverflow.com/q/326390
 	public String readFile(String file) throws IOException{
-
+		
 		br = new BufferedReader(new FileReader (file));
 		String line = null;
 		StringBuilder stringBuilder = new StringBuilder();
@@ -28,6 +27,23 @@ public class File {
 		    return stringBuilder.toString();
 		} finally {
 		    br.close();
+		}
+	}
+	
+	// Adapted From: // https://stackoverflow.com/a/10390351
+	public void writeFile(String text) throws IOException{
+		BufferedWriter out = new BufferedWriter(new FileWriter("decrypted.txt"));
+
+		try {
+		    out.write(text);  		                                            
+		}
+		catch (IOException e)
+		{
+		    System.out.println("IOException " + e);
+		}
+		finally
+		{
+		    out.close();
 		}
 	}
 
