@@ -11,7 +11,7 @@ public class SimulatedAnnealing {
 	private PlayfairCipher pc;
 	private GramParser gp;
 	private int transitions = 50000;
-	private int temperature = 50;
+	private int temperature = 35;
 	private String child;
 	private File file;
 	
@@ -20,6 +20,8 @@ public class SimulatedAnnealing {
 		gp = new GramParser();
 		k = new Key();	
 	}
+	
+	
 	
 	public void StartSimulatedAnnealing(String cipherTxt){
 		Random r = ThreadLocalRandom.current();
@@ -67,17 +69,18 @@ public class SimulatedAnnealing {
 					bestKey = parent;
 				}
 			}	
-			System.out.println("Temp: " + temp);
+			System.out.println("Temp: " + temp + "\tScore: " + bestScore + "\tBest Key: " + bestKey);
 		}
 		
 		System.out.println("Best Score: " + bestScore + "\nBest Decrypted Text: " + bestDecryptedText + "\nBest Key: " + bestKey);
 		
+		System.out.println("Writing Decrypted Results to a text file called decrypted_results.txt...");
 		file = new File();
 		try {
 			file.writeFile(bestDecryptedText);
+			System.out.println("Write Complete!");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Error writing decrypted results to a file");
 		}
 	}
 

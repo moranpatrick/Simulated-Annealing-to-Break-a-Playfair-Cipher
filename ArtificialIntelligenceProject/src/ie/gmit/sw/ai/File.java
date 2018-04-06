@@ -5,7 +5,6 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Reader;
 
 public class File {
 
@@ -32,7 +31,7 @@ public class File {
 	
 	// Adapted From: // https://stackoverflow.com/a/10390351
 	public void writeFile(String text) throws IOException{
-		BufferedWriter out = new BufferedWriter(new FileWriter("decrypted.txt"));
+		BufferedWriter out = new BufferedWriter(new FileWriter("decrypted_results.txt"));
 
 		try {
 		    out.write(text);  		                                            

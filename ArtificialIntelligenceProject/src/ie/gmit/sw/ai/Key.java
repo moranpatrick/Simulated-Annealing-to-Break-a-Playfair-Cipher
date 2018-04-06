@@ -1,9 +1,7 @@
 package ie.gmit.sw.ai;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
 
 public class Key {
 	

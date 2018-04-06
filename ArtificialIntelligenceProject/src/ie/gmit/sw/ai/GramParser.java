@@ -1,7 +1,6 @@
 package ie.gmit.sw.ai;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -9,39 +8,27 @@ import java.util.Map;
 
 public class GramParser {
 	
-	private Map<String, Double> map = new HashMap<String, Double>();
+	private static Map<String, Double> map = new HashMap<String, Double>();
 	private BufferedReader in;
-	private long count = 0; 
-	private String FILENAME = "4grams.txt";
+	private static long count = 0; 
 	
 
+	public int parse4Gram(String filePath) throws NumberFormatException, IOException{
+				
+		in = new BufferedReader(new FileReader(filePath));
+		String line = "";
+		while ((line = in.readLine()) != null) {
+			map.put(line.split(" ")[0], Double.parseDouble(line.split(" ")[1]));	
+		}		
+		System.out.println("Successfully Loaded in 4Grams.txt");
+		in.close();
 	
-	public GramParser() throws IOException{
-		parse4Gram();
-	}
-	
-	public void parse4Gram() throws IOException{
-		
-		
-		try {
-			in = new BufferedReader(new FileReader(FILENAME));
-			String line = "";
-			while ((line = in.readLine()) != null) {
-				map.put(line.split(" ")[0], Double.parseDouble(line.split(" ")[1]));	
-			}
-			
-			System.out.println("NGrams Successfully Loaded");
-			in.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e){
-			e.printStackTrace();
-		}	
-		
+		// Sum Total nGram values
 		for(double val : map.values()){
 			count += val;
 		}
-		System.out.println("COUNT" + count);
+		System.out.println("Count after load: " + count);
+		return 0;
 	}  
 	
 	public double scoreText(String text){
