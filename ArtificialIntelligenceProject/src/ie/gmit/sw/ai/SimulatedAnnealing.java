@@ -22,6 +22,7 @@ public class SimulatedAnnealing {
 	private String bestKey;
 	private double parentScore;
 	private double bestScore;
+	private String fullText;
 	
 	public SimulatedAnnealing(){
 		pc = new PlayfairCipher();
@@ -34,17 +35,23 @@ public class SimulatedAnnealing {
 	 * @param cipherTxt from user to use with the Simulated Annealing Algorithm
 	 */
 	public void StartSimulatedAnnealing(String cipherTxt){
-		Random r = ThreadLocalRandom.current();					
+		Random r = ThreadLocalRandom.current();		
+		fullText = cipherTxt;
 		/* Create A Table with the Key */
 		pc.createTable(parent);
 		/* Decrypt The Text */
+		/* Only Decrypt 700 Charaters of the text */
+		if(cipherTxt.length() > 700){
+			cipherTxt = cipherTxt.substring(0, Math.min(cipherTxt.length(), 700));
+		}
+
 		decryptedText = pc.decode(cipherTxt);
 		bestDecryptedText = decryptedText;
 		
 		/* Generate a random 25 letter key called Parent */
 		parent = k.generateKey();
 		/* Get Parent Score */
-		parentScore = gp.scoreText(decryptedText); // or (cipherTxt)
+		parentScore = gp.scoreText(decryptedText); 
 		bestScore = parentScore;
 		bestKey = parent;
 		
@@ -81,6 +88,9 @@ public class SimulatedAnnealing {
 			System.out.println("Temp: " + temp + "\tBest Score: " + bestScore + "\tBest Key: " + bestKey);
 		}		
 		System.out.println("Best Score: " + bestScore + "\nBest Decrypted Text: " + bestDecryptedText + "\nBest Key: " + bestKey);
+		
+		pc.createTable(bestKey);
+		bestDecryptedText = pc.decode(fullText);
 		
 		/* Write Results to a text file */
 		System.out.println("Writing Decrypted Results to a text file called decrypted_results.txt...");

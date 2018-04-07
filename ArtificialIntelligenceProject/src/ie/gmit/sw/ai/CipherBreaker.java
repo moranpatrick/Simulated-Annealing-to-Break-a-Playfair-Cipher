@@ -78,12 +78,30 @@ public class CipherBreaker {
 					else{
 						
 					}
-					
-					System.out.println("\nPlease enter the path to your file (eg : C:\\fileName.txt): ");
+					System.out.println("\nEnter Path To a Text File OR URL to Text A File (eg www.google.com/file.txt)");
 					fileName = sc.next();
+					
+					try {
+						URL url = new URL(fileName);
+						InputStream in = url.openStream();
+						
+						urlFile = fileName.substring(fileName.lastIndexOf('/') + 1, fileName.length());
+						pathFileUrl = Paths.get("./" + urlFile).toAbsolutePath().normalize();
+						System.out.println("Downloading to " + pathFileUrl.toString());
+						System.out.println(url.getFile().toString());
+					    Files.copy(in, pathFileUrl , StandardCopyOption.REPLACE_EXISTING);
+					    System.out.println("Download complete...\n");
+					} catch (MalformedURLException mue) {
+						/* Not A Valid URL so it must be a file locally */
+						pathFileUrl = Paths.get(fileName);
+					} catch (Exception e) {
+						System.out.println("Error getting book.." + e);
+						continue;
+					}
 
 					try {
-						cipherText = new File().readFile(fileName).toUpperCase().replaceAll("[^A-Za-z0-9 ]", "");
+						cipherText = new File().readFile(pathFileUrl.toString()).toUpperCase().replaceAll("[^A-Za-z0-9 ]", "");
+						System.out.println(cipherText);
 						sa = new SimulatedAnnealing();
 						sa.StartSimulatedAnnealing(cipherText);
 							
@@ -94,51 +112,6 @@ public class CipherBreaker {
 					}						
 					break;	
 				case 3:
-					/*Decrypt Cipher Text From Text File from URL */
-					System.out.println("Enter URL to Text File (eg www.google.com/file.txt)");
-					fileLocation = sc.next();
-					
-					try {
-						URL url = new URL(fileLocation);
-						InputStream in = url.openStream();
-						
-						urlFile = fileLocation.substring(fileLocation.lastIndexOf('/') + 1, fileLocation.length());
-						pathFileUrl = Paths.get("./" + urlFile).toAbsolutePath().normalize();
-						System.out.println("Downloading to " + pathFileUrl.toString());
-						System.out.println(url.getFile().toString());
-					    Files.copy(in, pathFileUrl , StandardCopyOption.REPLACE_EXISTING);
-					    System.out.println("Download complete...\n");
-					} catch (MalformedURLException mue) {
-						System.out.println("Invalid Url - Please Check Again");
-						continue;
-					} catch (Exception e) {
-						System.out.println("Error getting book.." + e);
-						continue;
-					}
-					System.out.println("Text File Downloaded..." + pathFileUrl.toString());
-					
-					System.out.println("Load 4Grams file? (y/n)");
-					load = sc.next();
-					
-					if(load.equalsIgnoreCase("y") || load.equalsIgnoreCase("yes")){
-						loadFourGramsFile(load);
-					}
-					else{
-					
-					}
-					
-					try {
-						cipherText = new File().readFile(pathFileUrl.toString()).toUpperCase().replaceAll("[^A-Za-z0-9 ]", "");
-						sa = new SimulatedAnnealing();
-						sa.StartSimulatedAnnealing(cipherText);
-							
-					} catch (FileNotFoundException e) {
-						System.out.println("Unable To Locate The File - Please Check Path");
-					} catch (IOException e) {
-						System.out.println("Unable to load %s" + pathFileUrl.toString());
-					}					
-					break;
-				case 4:
 					System.out.println("Please Enter an encryption key (min length 6): ");
 					encKey = sc.next();
 				
@@ -152,7 +125,7 @@ public class CipherBreaker {
 					System.out.println("Your Encrypted Text: " + pf.encode(encText));
 					break;
 				default:
-					if(choice != 5){
+					if(choice != 4){
 						System.out.println("Sorry - Thats invalid Input Please Try Again default");
 						break;
 					}
@@ -162,7 +135,7 @@ public class CipherBreaker {
 				sc.next();
 			}
 			
-		}while(choice != 5);				
+		}while(choice != 4);				
 		sc.close();
 	}
     
@@ -177,9 +150,8 @@ public class CipherBreaker {
         System.out.println("|---------------------------|");
         System.out.println("|  1) Decrypt With Key      |");
         System.out.println("|  2) Decrypt Without Key   |");       
-        System.out.println("|  3) Decrypt text from URL |");     
-        System.out.println("|  4) Encrypt Some Text     |");   
-        System.out.println("|  5) Quit                  |");
+        System.out.println("|  3) Encrypt Some Text     |");     
+        System.out.println("|  4) Quit                  |");   
         System.out.println("|---------------------------|");
 
         choice = sc.nextInt();
@@ -203,10 +175,10 @@ public class CipherBreaker {
 		} catch (FileNotFoundException e){
 			System.out.println("Unable To Locate 4Grams File - Please Check Path");
 		} catch (IOException e) {
-			System.out.println("Unable to load the nGrams.txt");
+			System.out.println("Unable to load the 4Grams.txt");
 		}
 		
-		System.out.println("Successfully Loaded 4grams File");
+		System.out.println("Successfully Loaded 4grams File.");
     }
 
 

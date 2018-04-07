@@ -29,7 +29,6 @@ public class GramParser {
 		while ((line = in.readLine()) != null) {
 			map.put(line.split(" ")[0], Double.parseDouble(line.split(" ")[1]));	
 		}		
-		System.out.println("Successfully Loaded in 4Grams.txt");
 		in.close();
 	
 		/* Sum Total nGram values */

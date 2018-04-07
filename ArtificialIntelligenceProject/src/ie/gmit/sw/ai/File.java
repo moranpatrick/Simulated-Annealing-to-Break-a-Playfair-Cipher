@@ -42,7 +42,7 @@ public class File {
 	 * @throws IOException
 	 */
 	public void writeFile(String text) throws IOException{
-		BufferedWriter out = new BufferedWriter(new FileWriter("decrypted_results.txt"));
+		BufferedWriter out = new BufferedWriter(new FileWriter("DecryptedResults/decrypted_results.txt"));
 		try {
 		    out.write(text);  		                                            
 		}
