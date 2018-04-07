@@ -11,7 +11,7 @@ public class SimulatedAnnealing {
 	private PlayfairCipher pc;
 	private GramParser gp;
 	private int transitions = 50000;
-	private int temperature = 35;
+	private int temperature = 50;
 	private String child;
 	private File file;
 	

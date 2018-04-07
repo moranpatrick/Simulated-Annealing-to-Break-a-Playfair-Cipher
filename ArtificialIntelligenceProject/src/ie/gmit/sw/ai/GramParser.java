@@ -27,7 +27,6 @@ public class GramParser {
 		for(double val : map.values()){
 			count += val;
 		}
-		System.out.println("Count after load: " + count);
 		return 0;
 	}  
 	
@@ -46,8 +45,7 @@ public class GramParser {
 		}
 		
 		for(int i = 0; i < n; i++) {
-			//score += Math.log10((double)(((map.get(text.substring(i, i + 4)) != null) ? map.get(text.substring(i, i + 4)) : 1)) / this.count);
-			
+						
 			if(map.get(text.substring(i, i + 4)) != null){
 				score += Math.log10((double)(map.get(text.substring(i, i + 4))) / count);
 			}
