@@ -28,7 +28,7 @@ public class CipherBreaker {
 		SimulatedAnnealing sa = null;
 		String key, encKey, encText;
 		String result, urlFile, fileLocation;
-		File file;
+		File file = new File();
 		String output;		
 		PlayfairCipher pf = new PlayfairCipher();	
 		Path pathFileUrl = null;
@@ -54,8 +54,8 @@ public class CipherBreaker {
 						System.out.println(output);
 						file = new File();
 						try {
-							file.writeFile(output);
-							System.out.println("Results outputed to decrypt_result.txt");
+							file.writeFile(output, "decrypted_result.txt");
+							System.out.println("Results outputed to decrypted_result.txt");
 						} catch (IOException e) {
 							System.out.println("Error writing decrypted results to a file");
 						}
@@ -101,7 +101,7 @@ public class CipherBreaker {
 
 					try {
 						cipherText = new File().readFile(pathFileUrl.toString()).toUpperCase().replaceAll("[^A-Za-z0-9 ]", "");
-						System.out.println(cipherText);
+						System.out.println("Starting Simulated Annealing Algorithm. This may take some time...");
 						sa = new SimulatedAnnealing();
 						sa.StartSimulatedAnnealing(cipherText);
 							
@@ -122,7 +122,15 @@ public class CipherBreaker {
 					
 					pf.createTable(encKey);
 					encText = pf.prepareText(encText, true);
-					System.out.println("Your Encrypted Text: " + pf.encode(encText));
+					encText = pf.encode(encText);
+					System.out.println("Your Decypted Text:\n" + encText);
+					
+					try {
+						file.writeFile(encText, "yourFile.txt");
+						System.out.println("Create a file called yourFile.txt with your decrypted text");
+					} catch (IOException e) {
+						System.out.println("Error creating a text file with your decrypted output.");
+					}
 					break;
 				default:
 					if(choice != 4){

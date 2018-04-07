@@ -96,7 +96,7 @@ public class SimulatedAnnealing {
 		System.out.println("Writing Decrypted Results to a text file called decrypted_results.txt...");
 		file = new File();
 		try {
-			file.writeFile(bestDecryptedText);
+			file.writeFile(bestDecryptedText, "decrypted_results.txt");
 			System.out.println("Write Complete!");
 		} catch (IOException e) {
 			System.out.println("Error writing decrypted results to a file");

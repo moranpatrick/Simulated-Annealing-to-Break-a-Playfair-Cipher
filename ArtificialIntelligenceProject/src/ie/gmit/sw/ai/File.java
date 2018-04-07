@@ -41,8 +41,8 @@ public class File {
 	 * @param text results from Decryption
 	 * @throws IOException
 	 */
-	public void writeFile(String text) throws IOException{
-		BufferedWriter out = new BufferedWriter(new FileWriter("DecryptedResults/decrypted_results.txt"));
+	public void writeFile(String text, String path) throws IOException{
+		BufferedWriter out = new BufferedWriter(new FileWriter(path));
 		try {
 		    out.write(text);  		                                            
 		}
