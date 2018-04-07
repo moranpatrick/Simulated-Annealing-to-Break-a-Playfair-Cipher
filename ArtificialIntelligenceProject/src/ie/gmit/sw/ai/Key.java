@@ -1,5 +1,7 @@
 package ie.gmit.sw.ai;
-
+/**
+ * Generates a Random 25 Character Key and Makes Small changes to a key provided.
+ */
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -7,14 +9,15 @@ public class Key {
 	
 	private String keyToShuffle = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
 	
-	
+	/**
+	 * Generates a randomly shuffled key using The Fisher Yates Shuffle
+	 * @return String 25 Char Key
+	 */
 	public String generateKey(){		
-		// convert keyToShuffle to char[] to use with Fisher–Yates Shuffle
 		char[] key = keyToShuffle.toCharArray();
 		int index;
 		Random random = ThreadLocalRandom.current();
-		for (int i = key.length - 1; i > 0; i--) {
-			
+		for (int i = key.length - 1; i > 0; i--) {			
 			index = random.nextInt(i + 1);
 			if (index != i) {
 				key[index] ^= key[i];
@@ -22,8 +25,6 @@ public class Key {
 				key[index] ^= key[i];
 			}
 		}
-		
-		// Return the char[] as a String
 		return new String(key);
 	}
 	
@@ -62,13 +63,15 @@ public class Key {
 			return ReverseKey(key);
 		default:	
 			return SwapLetters(key, r.nextInt(24), r.nextInt(24));
-		}
-		
+		}	
 	}
-	
-	// Swapping Rows And Columns Code Adapted from: https://stackoverflow.com/a/47020355
-	// Reverse a String Adapted from: https://www.tutorialspoint.com/java/lang/stringbuilder_reverse.htm
-	// Swapping Letters in Char Array Adapted from: https://www.geeksforgeeks.org/swapping-characters-string-java/
+	/**
+	 * Randomly picks two characters and swaps them
+	 * @param k key to adjusted
+	 * @param one first char to be swapped
+	 * @param two second char to be swapped
+	 * @return String with chars swapped
+	 */
 	public String SwapLetters(String k, int one, int two) {		
 		char charArr[] = k.toCharArray();
         char temp = charArr[one];
@@ -77,10 +80,20 @@ public class Key {
         return new String(charArr);	
 	}
 
+	/**
+	 * Reverses The Key
+	 * @param k key to adjusted
+	 * @return Reversed String
+	 */
 	public String ReverseKey(String k) {
 		return new StringBuilder(k).reverse().toString();
 	}
-
+	
+	/**
+	 * Flips The Rows in the Key
+	 * @param k key to adjusted
+	 * @return String with rows flipped
+	 */
 	public String FlipRows(String k) {
 		char[] charArr = k.toCharArray();
 		
@@ -88,12 +101,15 @@ public class Key {
             for (int j = 0; j < 5; j++) {
                 charArr[i * 5 + j] = k.toCharArray()[(4 - i) * 5 + j];
             }
-        }
-		
-		return new String(charArr);
-		
+        }		
+		return new String(charArr);	
 	}
-
+	
+	/**
+	 * Flips The Columns in the Key
+	 * @param k key to adjusted
+	 * @return String with columns flipped
+	 */
 	public String FlipCols(String k) {
 		char[] charArr = k.toCharArray();
 		
@@ -105,7 +121,13 @@ public class Key {
 		return new String(charArr);
 	}
 	
-
+	/**
+	 * Randomly Swaps two Rows in the Key
+	 * @param k key to adjusted
+	 * @param row1
+	 * @param row2
+	 * @return String with the rows swapped
+	 */
 	public String SwapRows(String k, int row1, int row2) {
 		char[] charArr = k.toCharArray();
 		
@@ -118,6 +140,13 @@ public class Key {
 		return new String(charArr);
 	}
 
+	/**
+	 * Randomly Swaps two Colums in the Key
+	 * @param k key to adjusted
+	 * @param col1
+	 * @param col2
+	 * @return String with the Columns swapped
+	 */
 	public String SwapCols(String k, int col1, int col2) {
 		char[] charArr = k.toCharArray();
 		
@@ -127,6 +156,5 @@ public class Key {
 			charArr[i * 5 + col2] = temp;
 		}
 		return new String(charArr);
-	}
-	
+	}	
 }

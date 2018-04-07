@@ -2,19 +2,25 @@ package ie.gmit.sw.ai;
 
 import java.awt.Point;
 
-/* Playfair Cipher Adapted from http://rosettacode.org/wiki/Playfair_cipher#Java */
-public class PlayfairCipher {
-	
-	
+public class PlayfairCipher {	
     private char[][] charTable;
     private Point[] positions;
- 
- 
+    
+    /**
+     * Prepares Text For Decryption converting to Caps and replacing J's with I's
+     * @param s The Cipher Text
+     * @param changeJtoI
+     * @return Prepared Text
+     */
     public static String prepareText(String s, boolean changeJtoI) {
         s = s.toUpperCase().replaceAll("[^A-Z]", "");
         return changeJtoI ? s.replace("J", "I") : s.replace("Q", "");
     }
  
+    /**
+     * Create a table with a Key
+     * @param key
+     */
     public void createTable(String key) {
         charTable = new char[5][5];
         positions = new Point[26];
@@ -31,26 +37,21 @@ public class PlayfairCipher {
             }
         }
     }
- 
-    public String encode(String s) {
-        StringBuilder sb = new StringBuilder(s);
- 
-        for (int i = 0; i < sb.length(); i += 2) {
- 
-            if (i == sb.length() - 1)
-                sb.append(sb.length() % 2 == 1 ? 'X' : "");
- 
-            else if (sb.charAt(i) == sb.charAt(i + 1))
-                sb.insert(i + 1, 'X');
-        }
-        return codec(sb, 1);
-    }
- 
-    public String decode(String s) {
-    	
+    /**
+     * Returns Decrypted Text
+     * @param s
+     * @return String
+     */
+    public String decode(String s) { 	
         return codec(new StringBuilder(s), 4);
     }
- 
+    
+    /**
+     * 
+     * @param text
+     * @param direction
+     * @return
+     */
     public String codec(StringBuilder text, int direction) {
         int len = text.length();
         for (int i = 0; i < len; i += 2) {

@@ -58,8 +58,13 @@ However in this project we will use log probability because we can run into prob
 [Top](#contents) 
 
 # References<a name = "references"></a>
-https://en.wikipedia.org/wiki/Playfair_cipher  
-http://rosettacode.org/wiki/Playfair_cipher#Java  
+[PlayFair Info](https://en.wikipedia.org/wiki/Playfair_cipher)   
+[Adapted code for Playfair Cipher](http://rosettacode.org/wiki/Playfair_cipher#Java)    
+[Create A String from a Text File](https://stackoverflow.com/q/326390)  
+[Write A String to a Text File](https://stackoverflow.com/a/10390351)  
+[Swapping Rows And Columns](https://stackoverflow.com/a/47020355)  
+[Reverse a String](https://www.tutorialspoint.com/java/lang/stringbuilder_reverse.html)    
+[Swapping Letters in Char Array](https://www.geeksforgeeks.org/swapping-characters-string-java/)    
 
 
 [Top](#contents) 

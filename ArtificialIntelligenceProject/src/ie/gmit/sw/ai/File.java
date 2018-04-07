@@ -1,5 +1,7 @@
 package ie.gmit.sw.ai;
-
+/**
+ * File Class Handles Read and Write Operations on a File.
+ */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -10,29 +12,35 @@ public class File {
 
 	private BufferedReader br;
 	
-	 // https://stackoverflow.com/q/326390
-	public String readFile(String file) throws IOException{
+	/**
+	 * Uses a StringBuilder to append the contents of a text file to a String
+	 * @param path to a file
+	 * @return String of the file contents
+	 * @throws IOException
+	 */
+	public String readFile(String path) throws IOException{
 		
-		br = new BufferedReader(new FileReader (file));
+		br = new BufferedReader(new FileReader (path));
 		String line = null;
 		StringBuilder stringBuilder = new StringBuilder();
 		
-		try {
-			
+		try {			
 		    while((line = br.readLine()) != null) {
 		        stringBuilder.append(line);
-		    }
-		
+		    }		
 		    return stringBuilder.toString();
 		} finally {
 		    br.close();
 		}
 	}
 	
-	// Adapted From: // https://stackoverflow.com/a/10390351
+	/**
+	 * Writes Result to a text file called decrypted_results.txt at current directory
+	 * @param text results from Decryption
+	 * @throws IOException
+	 */
 	public void writeFile(String text) throws IOException{
 		BufferedWriter out = new BufferedWriter(new FileWriter("decrypted_results.txt"));
-
 		try {
 		    out.write(text);  		                                            
 		}
@@ -45,5 +53,4 @@ public class File {
 		    out.close();
 		}
 	}
-
 }

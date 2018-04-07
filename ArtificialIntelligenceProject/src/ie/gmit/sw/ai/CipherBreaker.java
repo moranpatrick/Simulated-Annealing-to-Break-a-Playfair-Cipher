@@ -1,5 +1,8 @@
 package ie.gmit.sw.ai;
 
+/**
+ * Main Class handling Menu input and Selection
+ */
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -9,7 +12,6 @@ public class CipherBreaker {
 	private static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		
 		int choice = 0;
 		String gramsPath;
 		String load;
@@ -103,10 +105,12 @@ public class CipherBreaker {
 		sc.close();
 	}
     
+	/**
+	 * Displays a menu to the user and accepts input
+	 * @return int as users choice
+	 */
     public static int menu() {
-
-        int choice;
-        
+        int choice;   
         System.out.println("|-------------------------|");
         System.out.println("|------- Main Menu -------|");
         System.out.println("|-------------------------|");
