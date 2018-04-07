@@ -25,7 +25,7 @@ public class CipherBreaker {
 		String fileName = "";
 		String cipherText = "";
 		SimulatedAnnealing sa = null;
-		String key;
+		String key, encKey, encText;
 		String result, urlFile, fileLocation;
 		File file;
 		String output;		
@@ -41,6 +41,8 @@ public class CipherBreaker {
 					System.out.println("Please Enter Your Key:");
 					key = sc.next();
 					
+					sc.nextLine();
+					
 					System.out.println("\nPlease enter the path to your file (eg : C:\\fileName.txt): ");
 					fileName = sc.next();
 					
@@ -48,16 +50,16 @@ public class CipherBreaker {
 						result = new File().readFile(fileName).toUpperCase().replaceAll("[^A-Za-z0-9 ]", "");
 						pf.createTable(key);
 						output = pf.decode(result);
-						
+						System.out.println(output);
 						file = new File();
 						try {
 							file.writeFile(output);
-							System.out.println("Write Complete!");
+							System.out.println("Results outputed to decrypt_result.txt");
 						} catch (IOException e) {
 							System.out.println("Error writing decrypted results to a file");
 						}
 					} catch (FileNotFoundException e){
-						System.out.println("Unable To Locate nGrams File - Please Check Path");
+						System.out.println("Unable To Locate File - Please Check Path");
 						continue;
 					} catch (IOException e) {
 						System.out.println("Unable to load File");
@@ -76,7 +78,7 @@ public class CipherBreaker {
 						try {
 							gp.parse4Gram(gramsPath);
 						} catch (FileNotFoundException e){
-							System.out.println("Unable To Locate nGrams File - Please Check Path");
+							System.out.println("Unable To Locate 4Grams File - Please Check Path");
 							continue;
 						} catch (IOException e) {
 							System.out.println("Unable to load the nGrams.txt");
@@ -158,17 +160,31 @@ public class CipherBreaker {
 						System.out.println("Unable to load %s" + pathFileUrl.toString());
 					}					
 					break;
+				case 4:
+					System.out.println("Please Enter an encryption key (min length 6): ");
+					encKey = sc.next();
+				
+					sc.nextLine();
+					
+					System.out.println("Please Enter your text to encrypt: ");
+					encText = sc.nextLine();
+					
+					pf.createTable(encKey);
+					encText = pf.prepareText(encText, true);
+					System.out.println("Your Encrypted Text: " + pf.encode(encText));
+					break;
 				default:
-					if(choice != 4){
-						System.out.println("Sorry - Thats invalid Input Please Try Again");
+					if(choice != 5){
+						System.out.println("Sorry - Thats invalid Input Please Try Again default");
 						break;
 					}
 				}			
 			} catch (InputMismatchException e) {
-				System.out.println("Sorry - Thats invalid Input Please Try Again");
+				System.out.println("Sorry - Thats invalid Input Please Try Again Input");
 				sc.next();
-			}			
-		}while(choice != 4);				
+			}
+			
+		}while(choice != 5);				
 		sc.close();
 	}
     
@@ -184,7 +200,8 @@ public class CipherBreaker {
         System.out.println("|  1) Decrypt With Key      |");
         System.out.println("|  2) Decrypt Without Key   |");       
         System.out.println("|  3) Decrypt text from URL |");     
-        System.out.println("|  4) Quit                  |");     
+        System.out.println("|  4) Encrypt Some Text     |");   
+        System.out.println("|  5) Quit                  |");
         System.out.println("|---------------------------|");
 
         choice = sc.nextInt();

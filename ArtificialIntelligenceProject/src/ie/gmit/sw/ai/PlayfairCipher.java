@@ -12,7 +12,7 @@ public class PlayfairCipher {
      * @param changeJtoI
      * @return Prepared Text
      */
-    public static String prepareText(String s, boolean changeJtoI) {
+    public String prepareText(String s, boolean changeJtoI) {
         s = s.toUpperCase().replaceAll("[^A-Z]", "");
         return changeJtoI ? s.replace("J", "I") : s.replace("Q", "");
     }
@@ -37,6 +37,23 @@ public class PlayfairCipher {
             }
         }
     }
+    
+    public String encode(String s) {
+        StringBuilder sb = new StringBuilder(s);
+ 
+        for (int i = 0; i < sb.length(); i += 2) {
+ 
+            if (i == sb.length() - 1)
+                sb.append(sb.length() % 2 == 1 ? 'X' : "");
+ 
+            else if (sb.charAt(i) == sb.charAt(i + 1))
+                sb.insert(i + 1, 'X');
+        }
+        return codec(sb, 1);
+    }
+    
+    
+    
     /**
      * Returns Decrypted Text
      * @param s
