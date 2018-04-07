@@ -2,6 +2,11 @@ package ie.gmit.sw.ai;
 
 import java.awt.Point;
 
+/**
+ * Handles Playfair Encryption and Decryption
+ * @author Patrick Moran G00179039
+ *
+ */
 public class PlayfairCipher {	
     private char[][] charTable;
     private Point[] positions;

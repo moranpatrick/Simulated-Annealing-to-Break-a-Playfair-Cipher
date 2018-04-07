@@ -1,15 +1,15 @@
 package ie.gmit.sw.ai;
 
-/**
- * Loads the 4grams.txt into a HashMap summing nGrams and scores text using nGram statistics
- */
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Loads the 4grams.txt into a HashMap summing nGrams and scores text using nGram statistics
+ * @author Patrick Moran G00179039
+ */
 public class GramParser {
 	
 	private static Map<String, Double> map = new HashMap<String, Double>();

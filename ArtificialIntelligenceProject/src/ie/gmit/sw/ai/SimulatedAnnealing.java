@@ -1,12 +1,13 @@
 package ie.gmit.sw.ai;
 
-/**
- * Uses Simulated Annealing Algorithm to break a playfair cipher.
- */
 import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Uses Simulated Annealing Algorithm to break a playfair cipher.
+ * @author Patrick Moran G00179039
+ */
 public class SimulatedAnnealing {	
 	private String parent;
 	private Key k;

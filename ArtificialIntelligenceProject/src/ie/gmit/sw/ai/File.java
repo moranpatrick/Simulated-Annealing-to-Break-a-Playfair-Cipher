@@ -1,13 +1,15 @@
 package ie.gmit.sw.ai;
-/**
- * File Class Handles Read and Write Operations on a File.
- */
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * File Class Handles Read and Write Operations on a File.
+ * @author Patrick Moran g00179039
+ */
 public class File {
 
 	private BufferedReader br;

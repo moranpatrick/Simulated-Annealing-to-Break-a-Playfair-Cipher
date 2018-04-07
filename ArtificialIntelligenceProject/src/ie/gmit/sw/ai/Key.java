@@ -1,10 +1,12 @@
 package ie.gmit.sw.ai;
-/**
- * Generates a Random 25 Character Key and Makes Small changes to a key provided.
- */
+
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Generates a Random 25 Character Key and Makes Small changes to a key provided.
+ * @author Patrick Moran G00179039
+ */
 public class Key {
 	
 	private String keyToShuffle = "ABCDEFGHIKLMNOPQRSTUVWXYZ";

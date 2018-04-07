@@ -1,8 +1,5 @@
 package ie.gmit.sw.ai;
 
-/**
- * Main Class handling Menu input and Selection
- */
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,12 +12,16 @@ import java.nio.file.StandardCopyOption;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Main Class handling Menu input and Selection
+ * @author Patrick Moran G00179039
+ *
+ */
 public class CipherBreaker {
 	private static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		int choice = 0;
-		String gramsPath;
 		String load;
 		String fileName = "";
 		String cipherText = "";
@@ -68,27 +69,16 @@ public class CipherBreaker {
 					break;
 				case 2:
 					/*Decrypt Cipher Text Using SA */
-					System.out.println("Load 4Grams file? (y/n)");
+					System.out.println("Do you need to Load 4Grams file? (y/n)(no if allready loaded)");
 					load = sc.next();
-					
+
 					if(load.equalsIgnoreCase("y") || load.equalsIgnoreCase("yes")){
-						System.out.println("Please enter path to 4grams file (eg C:\\4grams.txt): ");
-						gramsPath = sc.next();											
-						GramParser gp = new GramParser();
-						try {
-							gp.parse4Gram(gramsPath);
-						} catch (FileNotFoundException e){
-							System.out.println("Unable To Locate 4Grams File - Please Check Path");
-							continue;
-						} catch (IOException e) {
-							System.out.println("Unable to load the nGrams.txt");
-							continue;
-						}
+						loadFourGramsFile(load);
 					}
 					else{
-						System.out.println("Sorry - That was invalid input.\n");
-						continue;
+						
 					}
+					
 					System.out.println("\nPlease enter the path to your file (eg : C:\\fileName.txt): ");
 					fileName = sc.next();
 
@@ -117,7 +107,7 @@ public class CipherBreaker {
 						System.out.println("Downloading to " + pathFileUrl.toString());
 						System.out.println(url.getFile().toString());
 					    Files.copy(in, pathFileUrl , StandardCopyOption.REPLACE_EXISTING);
-					    System.out.println("Download complete...");
+					    System.out.println("Download complete...\n");
 					} catch (MalformedURLException mue) {
 						System.out.println("Invalid Url - Please Check Again");
 						continue;
@@ -125,28 +115,16 @@ public class CipherBreaker {
 						System.out.println("Error getting book.." + e);
 						continue;
 					}
-					System.out.println("Text File Downloaded. Processing ..." + pathFileUrl.toString());
+					System.out.println("Text File Downloaded..." + pathFileUrl.toString());
 					
 					System.out.println("Load 4Grams file? (y/n)");
 					load = sc.next();
 					
 					if(load.equalsIgnoreCase("y") || load.equalsIgnoreCase("yes")){
-						System.out.println("Please enter path to 4grams file (eg C:\\4grams.txt): ");
-						gramsPath = sc.next();											
-						GramParser gp = new GramParser();
-						try {
-							gp.parse4Gram(gramsPath);
-						} catch (FileNotFoundException e){
-							System.out.println("Unable To Locate nGrams File - Please Check Path");
-							continue;
-						} catch (IOException e) {
-							System.out.println("Unable to load the nGrams.txt");
-							continue;
-						}
+						loadFourGramsFile(load);
 					}
 					else{
-						System.out.println("Sorry - That was invalid input.\n");
-						continue;
+					
 					}
 					
 					try {
@@ -206,6 +184,29 @@ public class CipherBreaker {
 
         choice = sc.nextInt();
         return choice;    
+    }
+    
+    /**
+     * Loads the 4grams.txt using the GramParser
+     * @param load 
+     */
+    public static void loadFourGramsFile(String load){
+    	String gramsPath;
+    	
+		System.out.println("Please enter path to 4grams file (eg C:\\4grams.txt): ");
+		gramsPath = sc.next();
+		
+		GramParser gp = new GramParser();
+		try {
+			gp.parse4Gram(gramsPath);
+			
+		} catch (FileNotFoundException e){
+			System.out.println("Unable To Locate 4Grams File - Please Check Path");
+		} catch (IOException e) {
+			System.out.println("Unable to load the nGrams.txt");
+		}
+		
+		System.out.println("Successfully Loaded 4grams File");
     }
 
 
