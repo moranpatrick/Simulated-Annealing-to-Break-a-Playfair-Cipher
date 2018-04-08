@@ -19,6 +19,10 @@ This repository contains my solution to Fourth Year, Artificial Intelligence pro
 ## Project Requirements
 <img src="images/req.png">
 
+### Output Preview
+#### Preview of the program running the Simulated Annealing Algorithm on Encrypted Text, Chapter 1 of the Hobbit.  
+[![IMAGE ALT TEXT HERE](images/screen.png)](https://www.youtube.com/watch?v=b53YrnQl52Y&feature=youtu.be&hd=1)
+
 [Top](#contents) 
 
 # Playfair Cipher<a name = "play"></a>
