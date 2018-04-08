@@ -56,9 +56,7 @@ public class PlayfairCipher {
         }
         return codec(sb, 1);
     }
-    
-    
-    
+      
     /**
      * Returns Decrypted Text
      * @param s

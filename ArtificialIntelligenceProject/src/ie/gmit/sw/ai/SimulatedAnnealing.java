@@ -13,8 +13,8 @@ public class SimulatedAnnealing {
 	private Key k;
 	private PlayfairCipher pc;
 	private GramParser gp;
-	private static final int TRANSITIONS = 50000;
-	private static final int TEMPERATURE = 50;
+	private static final int TRANSITIONS = 100000;
+	private static final int TEMPERATURE = 30;
 	private String child;
 	private File file;
 	private String bestDecryptedText;
@@ -23,6 +23,7 @@ public class SimulatedAnnealing {
 	private double parentScore;
 	private double bestScore;
 	private String fullText;
+	private double threshold;
 	
 	public SimulatedAnnealing(){
 		pc = new PlayfairCipher();
@@ -52,6 +53,12 @@ public class SimulatedAnnealing {
 		parent = k.generateKey();
 		/* Get Parent Score */
 		parentScore = gp.scoreText(decryptedText); 
+		
+		/* Threshold - If the current score is 165% better than the starting
+		 * score then the we stop and use that key.
+		 */
+		threshold = parentScore / 1.65;
+		
 		bestScore = parentScore;
 		bestKey = parent;
 		
@@ -83,6 +90,11 @@ public class SimulatedAnnealing {
 					bestScore = parentScore;
 					bestDecryptedText = decryptedText;
 					bestKey = parent;
+					
+					if(bestScore > threshold){
+						temp = 0;
+						trans = 0;
+					}
 				}
 			}	
 			System.out.println("Temp: " + temp + "\tBest Score: " + bestScore + "\tBest Key: " + bestKey);
