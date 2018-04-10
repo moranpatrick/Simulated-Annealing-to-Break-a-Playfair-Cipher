@@ -12,6 +12,7 @@ Fourth Year Artificial Intelligence Project
 * [Playfair Cipher](#play)
 * [Simulated Annealing](#sa)
 * [n-Gram Statistics](#ngram)
+* [Running Program](#rum)
 * [References](#references)
 
 # Introduction<a name = "intro"></a>
@@ -58,6 +59,17 @@ P(q) = count(q) / n
 However in this project we will use log probability because we can run into problems when multiplying probabilities with very small floating point values. The String "HAPPYDAYS" can be computed using log probabilty as follows: 
 
 <img src="images/log_prob.png">
+
+[Top](#contents) 
+
+
+# Running The Program<a name = "run"></a>
+1. Download or clone this repository.
+2. The run the playfair Jar with the following command:
+
+```bash
+ java -cp playfair.jar ie.gmit.sw.ai.CipherBreaker
+```
 
 [Top](#contents) 
 
